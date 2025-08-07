@@ -74,6 +74,8 @@ if arquivo is not None:
 
     df["valor"] = df["valor"].apply(format_val)
 
+    df = df.reset_index(drop=True)
+
     df.to_csv(nome_do_arquivo_de_saida, index=False, header=False, sep=";")
 
     df
