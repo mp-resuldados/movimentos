@@ -1,4 +1,5 @@
 import datetime
+from pathlib import Path
 import re
 
 import pandas as pd
@@ -50,11 +51,13 @@ def format_val(val):
         return f"{val}"
 
 
-nome_do_arquivo_de_saida = "movimentos.txt"
+# nome_do_arquivo_de_saida = "movimentos.txt"
 
 arquivo = st.file_uploader("Selecione o arquivo.")
 
 if arquivo is not None:
+    nome_do_arquivo_de_saida = Path(arquivo.name).with_suffix('')._str + ".txt"
+    
     df_in = pd.read_excel(arquivo, sheet_name="Plan1")
 
     df = df_in.melt(
